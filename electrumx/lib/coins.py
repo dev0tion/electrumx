@@ -3892,19 +3892,48 @@ class Quebecoin(AuxPowMixin, Coin):
 
 class Stratis(Coin):
     NAME = "Stratis"
-    SHORTNAME = "STRAT"
+    SHORTNAME = "STRAX"
     NET = "mainnet"
     XPUB_VERBYTES = bytes.fromhex("0488b21e")
     XPRV_VERBYTES = bytes.fromhex("0488ade4")
-    P2PKH_VERBYTE = bytes.fromhex("3f")
-    P2SH_VERBYTES = [bytes.fromhex("7d")]
-    WIF_BYTE = bytes.fromhex("bf")
+    P2PKH_VERBYTE = bytes.fromhex("4b")
+    P2SH_VERBYTES = [bytes.fromhex("8c")]
+    WIF_BYTE = bytes.fromhex("cb")
+    # Update these when the final block is mined
     GENESIS_HASH = ('0000066e91e46e5a264d42c89e120496'
                     '3b2ee6be230b443e9159020539d972af')
-    TX_COUNT = 4492040
-    TX_COUNT_HEIGHT = 1856348
+    TX_COUNT = 0
+    TX_COUNT_HEIGHT = 0
     TX_PER_BLOCK = 3
-    RPC_PORT = 16174
+    RPC_PORT = 17104
+    REORG_LIMIT = 500
+    DAEMON = daemon.PreLegacyRPCDaemon
+    DESERIALIZER = lib_tx.DeserializerTxTime
+
+    @classmethod
+    def header_hash(cls, header):
+        version, = util.unpack_le_uint32_from(header)
+
+        if version > 2:
+            return double_sha256(header)
+        else:
+            return hex_str_to_hash(Stratis.GENESIS_HASH)
+
+class StratisTestnet(Coin):
+    NAME = "Stratis"
+    SHORTNAME = "TSTRAX"
+    NET = "testnet"
+    XPUB_VERBYTES = bytes.fromhex("0488b21e")
+    XPRV_VERBYTES = bytes.fromhex("0488ade4")
+    P2PKH_VERBYTE = bytes.fromhex("78")
+    P2SH_VERBYTES = [bytes.fromhex("7f")]
+    WIF_BYTE = bytes.fromhex("f8")
+    GENESIS_HASH = ('0x0000db68ff9e74fbaf7654bab4fa70'
+                    '2c237318428fa9186055c243ddde6354ca')
+    TX_COUNT = 150000
+    TX_COUNT_HEIGHT = 74000
+    TX_PER_BLOCK = 3
+    RPC_PORT = 27104
     REORG_LIMIT = 500
     DAEMON = daemon.PreLegacyRPCDaemon
     DESERIALIZER = lib_tx.DeserializerTxTime
