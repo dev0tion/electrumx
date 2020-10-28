@@ -3919,7 +3919,7 @@ class Stratis(Coin):
         else:
             return hex_str_to_hash(Stratis.GENESIS_HASH)
 
-class StratisTestnet(Coin):
+class StratisTestnet(Stratis):
     NAME = "Stratis"
     SHORTNAME = "TSTRAX"
     NET = "testnet"
@@ -3928,8 +3928,8 @@ class StratisTestnet(Coin):
     P2PKH_VERBYTE = bytes.fromhex("78")
     P2SH_VERBYTES = [bytes.fromhex("7f")]
     WIF_BYTE = bytes.fromhex("f8")
-    GENESIS_HASH = ('0x0000db68ff9e74fbaf7654bab4fa70'
-                    '2c237318428fa9186055c243ddde6354ca')
+    GENESIS_HASH = ('0000db68ff9e74fbaf7654bab4fa702c'
+                    '237318428fa9186055c243ddde6354ca')
     TX_COUNT = 150000
     TX_COUNT_HEIGHT = 74000
     TX_PER_BLOCK = 3
