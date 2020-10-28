@@ -3908,7 +3908,7 @@ class Stratis(Coin):
     RPC_PORT = 17104
     REORG_LIMIT = 500
     DAEMON = daemon.PreLegacyRPCDaemon
-    DESERIALIZER = lib_tx.DeserializerTxTime
+    DESERIALIZER = lib_tx.DeserializerSegWit
 
     @classmethod
     def header_hash(cls, header):
@@ -3936,7 +3936,7 @@ class StratisTestnet(Stratis):
     RPC_PORT = 27104
     REORG_LIMIT = 500
     DAEMON = daemon.PreLegacyRPCDaemon
-    DESERIALIZER = lib_tx.DeserializerTxTime
+    DESERIALIZER = lib_tx.DeserializerSegWit
 
     @classmethod
     def header_hash(cls, header):
@@ -3945,4 +3945,4 @@ class StratisTestnet(Stratis):
         if version > 2:
             return double_sha256(header)
         else:
-            return hex_str_to_hash(Stratis.GENESIS_HASH)
+            return hex_str_to_hash(StratisTestnet.GENESIS_HASH)
