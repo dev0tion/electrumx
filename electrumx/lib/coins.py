@@ -3899,9 +3899,8 @@ class Stratis(Coin):
     P2PKH_VERBYTE = bytes.fromhex("4b")
     P2SH_VERBYTES = [bytes.fromhex("8c")]
     WIF_BYTE = bytes.fromhex("cb")
-    # Update these when the final block is mined
-    GENESIS_HASH = ('0000066e91e46e5a264d42c89e120496'
-                    '3b2ee6be230b443e9159020539d972af')
+    GENESIS_HASH = ('ebe158d09325c470276619ebc5f7f87c'
+                    '98c0ed4b211c46a17a6457655811d082')
     TX_COUNT = 0
     TX_COUNT_HEIGHT = 0
     TX_PER_BLOCK = 3
@@ -3909,15 +3908,6 @@ class Stratis(Coin):
     REORG_LIMIT = 500
     DAEMON = daemon.PreLegacyRPCDaemon
     DESERIALIZER = lib_tx.DeserializerSegWit
-
-    @classmethod
-    def header_hash(cls, header):
-        version, = util.unpack_le_uint32_from(header)
-
-        if version > 2:
-            return double_sha256(header)
-        else:
-            return hex_str_to_hash(Stratis.GENESIS_HASH)
 
 class StratisTestnet(Stratis):
     NAME = "Stratis"
