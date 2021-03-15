@@ -3901,8 +3901,8 @@ class Stratis(Coin):
     WIF_BYTE = bytes.fromhex("cb")
     GENESIS_HASH = ('ebe158d09325c470276619ebc5f7f87c'
                     '98c0ed4b211c46a17a6457655811d082')
-    TX_COUNT = 0
-    TX_COUNT_HEIGHT = 0
+    TX_COUNT = 615404
+    TX_COUNT_HEIGHT = 233201
     TX_PER_BLOCK = 3
     RPC_PORT = 17104
     REORG_LIMIT = 500
